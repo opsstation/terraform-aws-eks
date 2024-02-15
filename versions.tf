@@ -12,7 +12,7 @@ terraform {
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = ">= 2.0.0, < 3.0.0"  # Update version to match your requirements
+      version = ">= 2.0.0, < 3.0.0" # Update version to match your requirements
     }
     tls = {
       source  = "hashicorp/tls"
