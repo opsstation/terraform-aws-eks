@@ -89,7 +89,7 @@ module "eks" {
 ```
 
 ## Example
-For detailed examples on how to use this module, please refer to the [Examples](https://github.com/opsstation/terraform-aws-eks/blob/master/example) directory within this repository.
+For detailed examples on how to use this module, please refer to the [Examples](https://github.com/opsstation/terraform-aws-eks/blob/master/_examples) directory within this repository.
 
 ## Author
 Your Name Replace **MIT** and **opsstation** with the appropriate license and your information. Feel free to expand this README with additional details or usage instructions as needed for your specific use case.
