@@ -92,11 +92,11 @@ variable "nodes_additional_security_group_ids" {
 variable "addons" {
   type = list(any)
   default = [
-#    {
-#      addon_name        = "coredns"
-#      addon_version     = "v1.11.1-eksbuild.4"
-#      resolve_conflicts = "OVERWRITE"
-#    },
+    #    {
+    #      addon_name        = "coredns"
+    #      addon_version     = "v1.11.1-eksbuild.4"
+    #      resolve_conflicts = "OVERWRITE"
+    #    },
     {
       addon_name        = "kube-proxy"
       addon_version     = "v1.29.0-eksbuild.1"

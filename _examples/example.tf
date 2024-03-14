@@ -33,26 +33,26 @@ module "subnets" {
   cidr_block          = local.vpc_cidr_block
   ipv6_cidr_block     = module.vpc.ipv6_cidr_block
   enable_ipv6         = false
-#  extra_public_tags   = {
-    #    "kubernetes.io/cluster/${module.eks.cluster_name}" = "shared"
-    #    "kubernetes.io/role/elb"                           = "1"
-    #  }
-    #
-    #  extra_private_tags = {
-    #    "kubernetes.io/cluster/${module.eks.cluster_name}" = "shared"
-    #    "kubernetes.io/role/internal-elb"                  = "1"
-    #  }
+  #  extra_public_tags   = {
+  #    "kubernetes.io/cluster/${module.eks.cluster_name}" = "shared"
+  #    "kubernetes.io/role/elb"                           = "1"
+  #  }
+  #
+  #  extra_private_tags = {
+  #    "kubernetes.io/cluster/${module.eks.cluster_name}" = "shared"
+  #    "kubernetes.io/role/internal-elb"                  = "1"
+  #  }
 
-    #  extra_public_tags = {
-    #    "kubernetes.io/cluster/${module.eks.cluster_name}" = "shared"
-    #    "kubernetes.io/role/elb"                           = "1"
-    #  }
-    #
-    #  extra_private_tags = {
-    #    "kubernetes.io/cluster/${module.eks.cluster_name}" = "shared"
-    #    "kubernetes.io/role/internal-elb"                  = "1"
-#      }
-  }
+  #  extra_public_tags = {
+  #    "kubernetes.io/cluster/${module.eks.cluster_name}" = "shared"
+  #    "kubernetes.io/role/elb"                           = "1"
+  #  }
+  #
+  #  extra_private_tags = {
+  #    "kubernetes.io/cluster/${module.eks.cluster_name}" = "shared"
+  #    "kubernetes.io/role/internal-elb"                  = "1"
+  #      }
+}
 
 
 #tfsec:ignore:aws-ec2-no-public-egress-sgr
@@ -209,13 +209,13 @@ module "eks" {
   }
 
   apply_config_map_aws_auth = true
-#  map_additional_iam_users = [
-#    {
-#      userarn  = "arn:aws:iam::123456789:user/opsstation"
-#      username = "test"
-#      groups   = ["system:masters"]
-#    }
-#  ]
+  #  map_additional_iam_users = [
+  #    {
+  #      userarn  = "arn:aws:iam::123456789:user/opsstation"
+  #      username = "test"
+  #      groups   = ["system:masters"]
+  #    }
+  #  ]
 }
 ## Kubernetes provider configuration
 data "aws_eks_cluster" "this" {
