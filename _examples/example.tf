@@ -5,7 +5,7 @@ provider "aws" {
 locals {
   name                  = "test-eks"
   environment           = "test"
-  region                = "us-west-2"
+  region                = "us-east-1"
   vpc_cidr_block        = module.vpc.vpc_cidr_block
   additional_cidr_block = "172.16.0.0/16"
 }
@@ -33,16 +33,26 @@ module "subnets" {
   cidr_block          = local.vpc_cidr_block
   ipv6_cidr_block     = module.vpc.ipv6_cidr_block
   enable_ipv6         = false
-  extra_public_tags = {
-    "kubernetes.io/cluster/${module.eks.cluster_name}" = "shared"
-    "kubernetes.io/role/elb"                           = "1"
-  }
+#  extra_public_tags   = {
+    #    "kubernetes.io/cluster/${module.eks.cluster_name}" = "shared"
+    #    "kubernetes.io/role/elb"                           = "1"
+    #  }
+    #
+    #  extra_private_tags = {
+    #    "kubernetes.io/cluster/${module.eks.cluster_name}" = "shared"
+    #    "kubernetes.io/role/internal-elb"                  = "1"
+    #  }
 
-  extra_private_tags = {
-    "kubernetes.io/cluster/${module.eks.cluster_name}" = "shared"
-    "kubernetes.io/role/internal-elb"                  = "1"
+    #  extra_public_tags = {
+    #    "kubernetes.io/cluster/${module.eks.cluster_name}" = "shared"
+    #    "kubernetes.io/role/elb"                           = "1"
+    #  }
+    #
+    #  extra_private_tags = {
+    #    "kubernetes.io/cluster/${module.eks.cluster_name}" = "shared"
+    #    "kubernetes.io/role/internal-elb"                  = "1"
+#      }
   }
-}
 
 
 #tfsec:ignore:aws-ec2-no-public-egress-sgr
@@ -147,7 +157,7 @@ module "eks" {
   environment = local.environment
 
   # EKS
-  kubernetes_version     = "1.29"
+  kubernetes_version     = "1.28"
   endpoint_public_access = true
   # Networking
   vpc_id                            = module.vpc.id
@@ -179,7 +189,7 @@ module "eks" {
   }
   managed_node_group = {
     critical = {
-      name           = "${module.eks.cluster_name}-critical-node"
+      name           = "${module.eks.cluster_name}-critical-node1"
       capacity_type  = "ON_DEMAND"
       min_size       = 1
       max_size       = 2
@@ -188,7 +198,7 @@ module "eks" {
     }
 
     application = {
-      name                 = "${module.eks.cluster_name}-application"
+      name                 = "${module.eks.cluster_name}-application2"
       capacity_type        = "SPOT"
       min_size             = 1
       max_size             = 2
@@ -199,13 +209,13 @@ module "eks" {
   }
 
   apply_config_map_aws_auth = true
-  map_additional_iam_users = [
-    {
-      userarn  = "arn:aws:iam::123456789:user/opsstation"
-      username = "test"
-      groups   = ["system:masters"]
-    }
-  ]
+#  map_additional_iam_users = [
+#    {
+#      userarn  = "arn:aws:iam::123456789:user/opsstation"
+#      username = "test"
+#      groups   = ["system:masters"]
+#    }
+#  ]
 }
 ## Kubernetes provider configuration
 data "aws_eks_cluster" "this" {
